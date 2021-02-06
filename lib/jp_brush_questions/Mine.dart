@@ -74,7 +74,6 @@ class Mine extends StatelessWidget {
                         ),
                         // 语言切换
                         CupertinoContextMenu(
-
                           child: FSuper(
                             width: 60,
                             height: 60,
@@ -98,7 +97,8 @@ class Mine extends StatelessWidget {
                               onPressed: () {
                                 Provider.of<CommonBloc>(context, listen: false)
                                     .changeLocale("zh");
-                                Navigator.pop(context);
+                                Navigator.of(context, rootNavigator: true)
+                                    .pop();
                               },
                             ),
                             // 日语
@@ -107,7 +107,8 @@ class Mine extends StatelessWidget {
                               onPressed: () {
                                 Provider.of<CommonBloc>(context, listen: false)
                                     .changeLocale("ja");
-                                Navigator.pop(context);
+                                Navigator.of(context, rootNavigator: true)
+                                    .pop();
                               },
                             ),
                             // 英语
@@ -116,7 +117,8 @@ class Mine extends StatelessWidget {
                               onPressed: () {
                                 Provider.of<CommonBloc>(context, listen: false)
                                     .changeLocale("en");
-                                Navigator.pop(context);
+                                Navigator.of(context, rootNavigator: true)
+                                    .pop();
                               },
                             ),
                           ],
