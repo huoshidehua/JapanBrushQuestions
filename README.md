@@ -1,5 +1,6 @@
-# myapp
-
+# 日语刷题
+使用的是夜深模拟器
+无法启动的时候使用 命令 flutter run --enable-software-rendering
 A new Flutter project.
 
 ## Getting Started
