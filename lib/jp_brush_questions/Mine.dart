@@ -73,21 +73,53 @@ class Mine extends StatelessWidget {
                           },
                         ),
                         // 语言切换
-                        FSuper(
-                          width: 60,
-                          height: 60,
-                          backgroundColor: brightness == Brightness.light
-                              ? Colors.black38.withOpacity(0.5)
-                              : Colors.white38.withOpacity(0.5),
-                          corner: FCorner.all(90),
-                          child1: Text(
-                            Provider.of<CommonBloc>(context, listen: true)
-                                .appLanguage,
-                            style: TextStyle(
-                              fontSize: 40,
-                              color: Colors.white,
+                        CupertinoContextMenu(
+
+                          child: FSuper(
+                            width: 60,
+                            height: 60,
+                            backgroundColor: brightness == Brightness.light
+                                ? Colors.black38.withOpacity(0.5)
+                                : Colors.white38.withOpacity(0.5),
+                            corner: FCorner.all(90),
+                            child1: Text(
+                              Provider.of<CommonBloc>(context, listen: false)
+                                  .appLanguage,
+                              style: TextStyle(
+                                fontSize: 40,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
+                          actions: [
+                            // 中文
+                            CupertinoContextMenuAction(
+                              child: Text("zh"),
+                              onPressed: () {
+                                Provider.of<CommonBloc>(context, listen: false)
+                                    .changeLocale("zh");
+                                Navigator.pop(context);
+                              },
+                            ),
+                            // 日语
+                            CupertinoContextMenuAction(
+                              child: Text("ja"),
+                              onPressed: () {
+                                Provider.of<CommonBloc>(context, listen: false)
+                                    .changeLocale("ja");
+                                Navigator.pop(context);
+                              },
+                            ),
+                            // 英语
+                            CupertinoContextMenuAction(
+                              child: Text("en"),
+                              onPressed: () {
+                                Provider.of<CommonBloc>(context, listen: false)
+                                    .changeLocale("en");
+                                Navigator.pop(context);
+                              },
+                            ),
+                          ],
                         ),
                       ],
                     ),
