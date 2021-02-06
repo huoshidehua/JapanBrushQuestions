@@ -1,0 +1,18 @@
+{
+  "helloWorld": "hello world!",
+  "today":"TODAY",
+  "@today": {
+      "description": "today"
+   },
+  "brushQuestions":"TEST",
+  "@brushQuestions": {
+        "description": "brushQuestions"
+     },
+  "mine":"MINE",
+  "@mine": {
+          "description": "mine"
+       },
+  "@helloWorld": {
+    "description": "The conventional newborn programmer greeting"
+  }
+}
