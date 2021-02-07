@@ -56,15 +56,15 @@ class Mine extends StatelessWidget {
                           width: 60,
                           height: 60,
                           backgroundColor: brightness == Brightness.light
-                              ? Colors.black38.withOpacity(0.5)
-                              : Colors.white38.withOpacity(0.5),
+                              ? CupertinoColors.black.withOpacity(0.5)
+                              : CupertinoColors.white.withOpacity(0.5),
                           corner: FCorner.all(90),
                           shadowOffset: Offset(0.0, 1.0),
                           child1: Icon(
                             brightness == Brightness.light
                                 ? CupertinoIcons.moon
                                 : CupertinoIcons.sun_max,
-                            color: Colors.white,
+                            color: CupertinoColors.white,
                             size: 40,
                           ),
                           onChild1Click: () {
@@ -78,15 +78,15 @@ class Mine extends StatelessWidget {
                             width: 60,
                             height: 60,
                             backgroundColor: brightness == Brightness.light
-                                ? Colors.black38.withOpacity(0.5)
-                                : Colors.white38.withOpacity(0.5),
+                                ? CupertinoColors.black.withOpacity(0.5)
+                                : CupertinoColors.white.withOpacity(0.5),
                             corner: FCorner.all(90),
                             child1: Text(
                               Provider.of<CommonBloc>(context, listen: false)
                                   .appLanguage,
                               style: TextStyle(
                                 fontSize: 40,
-                                color: Colors.white,
+                                color: CupertinoColors.white,
                               ),
                             ),
                           ),
