@@ -12,6 +12,7 @@ class Mine extends StatelessWidget {
     // 当前主题
     var brightness =
         Provider.of<CommonBloc>(context, listen: true).themeData.brightness;
+    var language = Provider.of<CommonBloc>(context, listen: true).appLanguage;
     return CupertinoPageScaffold(
       child: CustomScrollView(
         slivers: [
@@ -72,57 +73,34 @@ class Mine extends StatelessWidget {
                                 .changeTheme();
                           },
                         ),
-                        // 语言切换
-                        CupertinoContextMenu(
-                          child: FSuper(
-                            width: 60,
-                            height: 60,
-                            backgroundColor: brightness == Brightness.light
-                                ? CupertinoColors.black.withOpacity(0.5)
-                                : CupertinoColors.white.withOpacity(0.5),
-                            corner: FCorner.all(90),
-                            child1: Text(
-                              Provider.of<CommonBloc>(context, listen: false)
-                                  .appLanguage,
-                              style: TextStyle(
-                                fontSize: 40,
-                                color: CupertinoColors.white,
-                              ),
+                        // 语言切换 sheet模式
+                        FSuper(
+                          width: 60,
+                          height: 60,
+                          backgroundColor: brightness == Brightness.light
+                              ? CupertinoColors.black.withOpacity(0.5)
+                              : CupertinoColors.white.withOpacity(0.5),
+                          corner: FCorner.all(90),
+                          child1: Text(
+                            language,
+                            style: TextStyle(
+                              fontSize: 40,
+                              color: CupertinoColors.white,
                             ),
                           ),
-                          actions: [
-                            // 中文
-                            CupertinoContextMenuAction(
-                              child: Text("zh"),
-                              onPressed: () {
-                                Provider.of<CommonBloc>(context, listen: false)
-                                    .changeLocale("zh");
-                                Navigator.of(context, rootNavigator: true)
-                                    .pop();
+                          onChild1Click: () {
+                            showCupertinoModalPopup(
+                              context: context,
+                              builder: (context) {
+                                return buildCupertinoActionSheet(
+                                    context, language);
                               },
-                            ),
-                            // 日语
-                            CupertinoContextMenuAction(
-                              child: Text("ja"),
-                              onPressed: () {
-                                Provider.of<CommonBloc>(context, listen: false)
-                                    .changeLocale("ja");
-                                Navigator.of(context, rootNavigator: true)
-                                    .pop();
-                              },
-                            ),
-                            // 英语
-                            CupertinoContextMenuAction(
-                              child: Text("en"),
-                              onPressed: () {
-                                Provider.of<CommonBloc>(context, listen: false)
-                                    .changeLocale("en");
-                                Navigator.of(context, rootNavigator: true)
-                                    .pop();
-                              },
-                            ),
-                          ],
+                            );
+                          },
                         ),
+
+                        // 语言切换 contextmenu 版本
+                        // buildCupertinoContextMenu(brightness, context),
                       ],
                     ),
                   ),
@@ -183,6 +161,85 @@ class Mine extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  CupertinoContextMenu buildCupertinoContextMenu(
+      Brightness brightness, BuildContext context) {
+    return CupertinoContextMenu(
+      child: FSuper(
+        width: 60,
+        height: 60,
+        backgroundColor: brightness == Brightness.light
+            ? CupertinoColors.black.withOpacity(0.5)
+            : CupertinoColors.white.withOpacity(0.5),
+        corner: FCorner.all(90),
+        child1: Text(
+          Provider.of<CommonBloc>(context, listen: false).appLanguage,
+          style: TextStyle(
+            fontSize: 40,
+            color: CupertinoColors.white,
+          ),
+        ),
+      ),
+      actions: [
+        // 中文
+        CupertinoContextMenuAction(
+          child: Text("zh"),
+          onPressed: () {
+            Provider.of<CommonBloc>(context, listen: false).changeLocale("zh");
+            Navigator.of(context, rootNavigator: true).pop();
+          },
+        ),
+        // 日语
+        CupertinoContextMenuAction(
+          child: Text("ja"),
+          onPressed: () {
+            Provider.of<CommonBloc>(context, listen: false).changeLocale("ja");
+            Navigator.of(context, rootNavigator: true).pop();
+          },
+        ),
+        // 英语
+        CupertinoContextMenuAction(
+          child: Text("en"),
+          onPressed: () {
+            Provider.of<CommonBloc>(context, listen: false).changeLocale("en");
+            Navigator.of(context, rootNavigator: true).pop();
+          },
+        ),
+      ],
+    );
+  }
+
+  CupertinoActionSheet buildCupertinoActionSheet(
+      BuildContext context, String language) {
+    return CupertinoActionSheet(
+      actions: <Widget>[
+        CupertinoActionSheetAction(
+          child: Text('zh'),
+          onPressed: () {
+            Provider.of<CommonBloc>(context, listen: false).changeLocale("zh");
+            Navigator.of(context, rootNavigator: true).pop();
+          },
+          isDefaultAction: language == 'zh',
+        ),
+        CupertinoActionSheetAction(
+          child: Text('ja'),
+          onPressed: () {
+            Provider.of<CommonBloc>(context, listen: false).changeLocale("ja");
+            Navigator.of(context, rootNavigator: true).pop();
+          },
+          isDefaultAction: language == 'ja',
+        ),
+        CupertinoActionSheetAction(
+          child: Text('en'),
+          onPressed: () {
+            Provider.of<CommonBloc>(context, listen: false).changeLocale("en");
+            Navigator.of(context, rootNavigator: true).pop();
+          },
+          isDefaultAction: language == 'en',
+        ),
+      ],
     );
   }
 }
