@@ -14,5 +14,15 @@
        },
   "@helloWorld": {
     "description": "The conventional newborn programmer greeting"
-  }
+  },
+  "comprehensive":"Mix",
+  "words":"words",
+  "grammar":"grammar",
+  "read":"read",
+  "listen":"listen",
+  "@comprehensive":{"description":"comprehensive"},
+  "@words":{"description":"words"},
+  "@grammar":{"description":"grammar"},
+  "@read":{"description":"read"},
+  "@listen":{"description":"listen"}
 }

@@ -2,5 +2,10 @@
   "helloWorld": "你好 世界!",
   "today":"今天",
   "brushQuestions":"刷题",
-   "mine":"我的"
+   "mine":"我的",
+   "comprehensive":"综合",
+   "words":"文字词汇",
+   "grammar":"语法",
+   "read":"阅读",
+   "listen":"听力"
 }

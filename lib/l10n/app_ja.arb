@@ -2,5 +2,10 @@
   "helloWorld": "よこそう　世界!",
   "today":"今日",
   "brushQuestions":"試験",
-  "mine":"私の"
+  "mine":"私の",
+  "comprehensive":"総合",
+  "words":"文字語彙",
+  "grammar":"文法",
+  "read":"読む",
+  "listen":"聴解"
 }
