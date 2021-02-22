@@ -37,6 +37,7 @@ dependencies:
   fsuper: ^2.0.2
   ffloat: ^1.0.1
   animations: ^1.1.2
+  dio: ^3.0.10
 
 dev_dependencies:
   pedantic: ^1.4.0
