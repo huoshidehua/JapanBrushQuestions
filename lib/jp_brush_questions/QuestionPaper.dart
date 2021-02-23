@@ -22,10 +22,18 @@ class QuestionPaper extends StatelessWidget {
     return CupertinoPageScaffold(
       backgroundColor: mainColor,
       navigationBar: CupertinoNavigationBar(
-        /// 不需要左边的 leading
-        leading: SizedBox(
-          height: 0,
-          width: 0,
+        /// 左侧关闭按钮
+        leading: CupertinoButton(
+          padding: traingBtnsPadding,
+          color: mainColor,
+          child: Icon(
+            CupertinoIcons.clear_thick_circled,
+            size: iconSize,
+            color: iconColor,
+          ),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
         ),
         middle: Text(
           level + questionType.toString(),
@@ -51,17 +59,17 @@ class QuestionPaper extends StatelessWidget {
               onPressed: () {},
             ),
 
-            /// 右侧关闭按钮
+            /// 右侧设置按钮 设置字体大小之类的
             CupertinoButton(
               padding: traingBtnsPadding,
               color: mainColor,
               child: Icon(
-                CupertinoIcons.clear_circled,
+                CupertinoIcons.settings_solid,
                 size: iconSize,
                 color: iconColor,
               ),
               onPressed: () {
-                Navigator.of(context).pop();
+
               },
             ),
           ],

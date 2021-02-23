@@ -38,6 +38,10 @@ dependencies:
   ffloat: ^1.0.1
   animations: ^1.1.2
   dio: ^3.0.10
+  shared_preferences: ^0.5.12+4
+  dio_cookie_manager: ^1.0.0
+  cookie_jar: ^1.0.1
+  connectivity: ^2.0.2
 
 dev_dependencies:
   pedantic: ^1.4.0

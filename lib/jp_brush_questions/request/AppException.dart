@@ -18,22 +18,22 @@ class AppException implements Exception {
     switch (error.type) {
       case DioErrorType.CANCEL:
         {
-          return BadRequestException(-1, "请求取消");
+          return BadRequestException(-1, "request cancel");
         }
         break;
       case DioErrorType.CONNECT_TIMEOUT:
         {
-          return BadRequestException(-1, "连接超时");
+          return BadRequestException(-1, "connect timeout");
         }
         break;
       case DioErrorType.SEND_TIMEOUT:
         {
-          return BadRequestException(-1, "请求超时");
+          return BadRequestException(-1, "SEND_TIMEOUT");
         }
         break;
       case DioErrorType.RECEIVE_TIMEOUT:
         {
-          return BadRequestException(-1, "响应超时");
+          return BadRequestException(-1, "RECEIVE_TIMEOUT");
         }
         break;
       case DioErrorType.RESPONSE:
@@ -45,47 +45,56 @@ class AppException implements Exception {
             switch (errCode) {
               case 400:
                 {
-                  return BadRequestException(errCode, "请求语法错误");
+                  /// 请求语法错误
+                  return BadRequestException(errCode, "request grammer wrong");
                 }
                 break;
               case 401:
                 {
-                  return UnauthorisedException(errCode, "没有权限");
+                  /// 没有权限
+                  return UnauthorisedException(errCode, "no auth");
                 }
                 break;
               case 403:
                 {
-                  return UnauthorisedException(errCode, "服务器拒绝执行");
+                  /// 服务器拒绝执行
+                  return UnauthorisedException(errCode, "server deny");
                 }
                 break;
               case 404:
                 {
-                  return UnauthorisedException(errCode, "无法连接服务器");
+                  /// 无法连接服务器
+                  return UnauthorisedException(errCode, "cannot connect to server");
                 }
                 break;
               case 405:
                 {
-                  return UnauthorisedException(errCode, "请求方法被禁止");
+                  /// 请求方法被禁止
+                  return UnauthorisedException(errCode, "requst method disable");
                 }
                 break;
               case 500:
                 {
-                  return UnauthorisedException(errCode, "服务器内部错误");
+                  /// 服务器内部错误
+                  return UnauthorisedException(errCode, "server internal error");
                 }
                 break;
               case 502:
                 {
-                  return UnauthorisedException(errCode, "无效的请求");
+                  /// 无效的请求
+                  return UnauthorisedException(errCode, "bad request");
                 }
                 break;
               case 503:
                 {
-                  return UnauthorisedException(errCode, "服务器挂了");
+                  /// 服务器挂了
+                  return UnauthorisedException(errCode, "server stuck");
                 }
                 break;
               case 505:
                 {
-                  return UnauthorisedException(errCode, "不支持HTTP协议请求");
+                  /// 不支持HTTP协议请求
+                  return UnauthorisedException(errCode, "not suport http proxy request");
                 }
                 break;
               default:
@@ -95,7 +104,8 @@ class AppException implements Exception {
                 }
             }
           } on Exception catch (_) {
-            return AppException(-1, "未知错误");
+            /// 未知错误
+            return AppException(-1, "unknow error");
           }
         }
         break;

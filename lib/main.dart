@@ -10,6 +10,7 @@ import 'package:provider/provider.dart';
 import 'gsy_book_learning/lesson1.dart';
 import 'jp_brush_questions/Layout.dart';
 import 'jp_brush_questions/bloc/CommonBloc.dart';
+import 'jp_brush_questions/request/HttpUtils.dart';
 import 'model/app_state_model.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -18,6 +19,9 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 void main() {
   var commonBloc = CommonBloc();
   Provider.debugCheckInvalidValueType = null;
+  HttpUtils.init(
+    baseUrl: "http://192.168.11.3:8866/",
+  );
   runApp(
     MultiProvider(
       providers: [
