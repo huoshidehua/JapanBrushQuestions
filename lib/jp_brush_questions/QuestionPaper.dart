@@ -79,8 +79,49 @@ class QuestionPaper extends StatelessWidget {
         ),
       ),
       child: SafeArea(
-          
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Container(
+              height: 100,
+              padding: const EdgeInsets.fromLTRB(2.0, 10.0, 2.0, 10.0),
+              child: ListView.separated(
+                physics: BouncingScrollPhysics(),
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                scrollDirection: Axis.horizontal,
+                separatorBuilder: (context, index) => Container(width: 16),
+                itemBuilder: (context, index) {
+                  return buildNumber(index: index, isSelected: false);
+                },
+                itemCount: 16,
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
+}
+
+Widget buildNumber({
+  @required int index,
+  @required bool isSelected,
+}) {
+  final color = isSelected ? Colors.orange.shade300 : Colors.white;
+
+  return GestureDetector(
+    onTap: () => {},
+    child: CircleAvatar(
+      radius: 30,
+      backgroundColor: color,
+      child: Text(
+        '${index + 1}',
+        style: TextStyle(
+          color: Colors.black,
+          fontWeight: FontWeight.bold,
+          fontSize: 18,
+        ),
+      ),
+    ),
+  );
 }
