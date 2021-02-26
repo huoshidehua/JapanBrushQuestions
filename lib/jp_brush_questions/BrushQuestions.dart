@@ -13,8 +13,7 @@ import 'package:myapp/jp_brush_questions/QuestionPaper.dart';
 class BrushQuestions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var brightness =
-        Provider.of<CommonBloc>(context, listen: true).themeData.brightness;
+    var brightness = Provider.of<CommonBloc>(context, listen: true).themeData.brightness;
     var N5Image = const AssetImage("images/kyotomomiji.jpg");
     var N4Image = const AssetImage("images/donbori.jpg");
     var N3Image = const AssetImage("images/fujisan.jpg");
@@ -24,9 +23,7 @@ class BrushQuestions extends StatelessWidget {
       child: CustomScrollView(
         slivers: [
           CupertinoSliverNavigationBar(
-            largeTitle: Text(
-              AppLocalizations.of(context).brushQuestions,
-            ),
+            largeTitle: Text(AppLocalizations.of(context).brushQuestions),
           ),
           // 主题部分
           SliverSafeArea(
@@ -48,14 +45,12 @@ class BrushQuestions extends StatelessWidget {
   }
 
   /// 日语考试等级 横向滑动
-  Widget JapaneseLevelScroller(BuildContext context, String level,
-      AssetImage levelImage, Brightness brightness) {
+  Widget JapaneseLevelScroller(BuildContext context, String level, AssetImage levelImage, Brightness brightness) {
     // 文字颜色
     var wordColor = const Color(0xFF76D7C4);
     ContainerTransitionType _transitionType = ContainerTransitionType.fade;
 
-
-   /* void _showMarkedAsDoneSnackbar(bool isMarkedAsDone) {
+    /* void _showMarkedAsDoneSnackbar(bool isMarkedAsDone) {
       if (isMarkedAsDone ?? false)
         Scaffold.of(context).showSnackBar(const SnackBar(
           content: Text('Marked as done!'),
@@ -67,10 +62,7 @@ class BrushQuestions extends StatelessWidget {
         Container(
           alignment: Alignment.centerLeft,
           padding: EdgeInsets.fromLTRB(12, 12, 0, 0),
-          child: Text(
-            level,
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-          ),
+          child: Text(level, style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
         ),
         // SizedBox(height: 16),
         Container(
@@ -81,16 +73,19 @@ class BrushQuestions extends StatelessWidget {
             children: [
               /// ios appstore 动画 弹出页面
               /// 综合 就是模拟 考试了
-              toTestPaper(OpenPaperFunctionParam(brightness, context, _transitionType, wordColor, levelImage,AppLocalizations.of(context).comprehensive,level,0)),
-              /// 文字词汇
-              toTestPaper(OpenPaperFunctionParam(brightness, context, _transitionType, wordColor, levelImage,AppLocalizations.of(context).words,level,1)),
-              /// 语法
-              toTestPaper(OpenPaperFunctionParam(brightness, context, _transitionType, wordColor, levelImage,AppLocalizations.of(context).grammar,level,2)),
-              /// 阅读理解
-              toTestPaper(OpenPaperFunctionParam(brightness, context, _transitionType, wordColor, levelImage,AppLocalizations.of(context).read,level,3)),
-              /// 听力
-              toTestPaper(OpenPaperFunctionParam(brightness, context, _transitionType, wordColor, levelImage,AppLocalizations.of(context).listen,level,4)),
+              toTestPaper(OpenPaperFunctionParam(brightness, context, _transitionType, wordColor, levelImage, AppLocalizations.of(context).comprehensive, level, 0)),
 
+              /// 文字词汇
+              toTestPaper(OpenPaperFunctionParam(brightness, context, _transitionType, wordColor, levelImage, AppLocalizations.of(context).words, level, 1)),
+
+              /// 语法
+              toTestPaper(OpenPaperFunctionParam(brightness, context, _transitionType, wordColor, levelImage, AppLocalizations.of(context).grammar, level, 2)),
+
+              /// 阅读理解
+              toTestPaper(OpenPaperFunctionParam(brightness, context, _transitionType, wordColor, levelImage, AppLocalizations.of(context).read, level, 3)),
+
+              /// 听力
+              toTestPaper(OpenPaperFunctionParam(brightness, context, _transitionType, wordColor, levelImage, AppLocalizations.of(context).listen, level, 4)),
             ],
           ),
         ),
@@ -101,41 +96,35 @@ class BrushQuestions extends StatelessWidget {
   /// 打开刷题页面
   OpenContainer<bool> toTestPaper(OpenPaperFunctionParam param) {
     return OpenContainer<bool>(
-              useRootNavigator: true,
-              closedShape: const RoundedRectangleBorder(),
-              closedElevation: 0.0,
-              closedColor: param.brightness == Brightness.light
-                  ? CupertinoTheme.of(param.context).scaffoldBackgroundColor
-                  : CupertinoTheme.of(param.context).primaryContrastingColor,
-              transitionType: param.transitionType,
-              openBuilder: (BuildContext context, VoidCallback _) {
-                return QuestionPaper(param.level,param.questionType);
-              },
-              onClosed: (data) {
-                //print(1);
-              },
-              tappable: true,
-              closedBuilder: (BuildContext _, VoidCallback openContainer) {
-                return FSuper(
-                  text: param.cardText,
-                  style: TextStyle(
-                    fontSize: 65,
-                    fontWeight: FontWeight.bold,
-                    color: param.wordColor,
-                  ),
-                  textAlignment: Alignment.center,
-                  height: 160,
-                  margin: const EdgeInsets.fromLTRB(12.0, 10.0, 12.0, 10.0),
-                  padding: const EdgeInsets.fromLTRB(12.0, 10.0, 12.0, 10.0),
-                  width: MediaQuery.of(param.context).size.width * 0.65,
-                  corner: FCorner.all(15),
-                  shadowBlur: 5,
-                  backgroundImage: param.levelImage,
-                  onClick: () {
-                    openContainer();
-                  },
-                );
-              },
-            );
+      useRootNavigator: false,
+      closedShape: const RoundedRectangleBorder(),
+      closedElevation: 0.0,
+      closedColor: param.brightness == Brightness.light ? CupertinoTheme.of(param.context).scaffoldBackgroundColor : CupertinoTheme.of(param.context).primaryContrastingColor,
+      transitionType: param.transitionType,
+      openBuilder: (BuildContext context, VoidCallback _) {
+        return  QuestionPaper(level: param.level, questionType: param.questionType);
+      },
+      onClosed: (data) {
+        //print(1);
+      },
+      tappable: true,
+      closedBuilder: (BuildContext _, VoidCallback openContainer) {
+        return FSuper(
+          text: param.cardText,
+          style: TextStyle(fontSize: 65, fontWeight: FontWeight.bold, color: param.wordColor),
+          textAlignment: Alignment.center,
+          height: 160,
+          margin: const EdgeInsets.fromLTRB(12.0, 10.0, 12.0, 10.0),
+          padding: const EdgeInsets.fromLTRB(12.0, 10.0, 12.0, 10.0),
+          width: MediaQuery.of(param.context).size.width * 0.65,
+          corner: FCorner.all(15),
+          shadowBlur: 5,
+          backgroundImage: param.levelImage,
+          onClick: () {
+            openContainer();
+          },
+        );
+      },
+    );
   }
 }

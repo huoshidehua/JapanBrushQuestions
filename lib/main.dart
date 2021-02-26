@@ -20,7 +20,7 @@ void main() {
   var commonBloc = CommonBloc();
   Provider.debugCheckInvalidValueType = null;
   HttpUtils.init(
-    baseUrl: "http://192.168.11.3:8866/",
+    baseUrl: "http://192.168.11.3:8080/",
   );
   runApp(
     MultiProvider(
